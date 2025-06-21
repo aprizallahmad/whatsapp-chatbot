@@ -18,7 +18,7 @@ const WAHA_WEBHOOK_SECRET = 'INI_RAHASIA_ANDA_YANG_UNIK'; // Ganti dengan secret
 
 // --- Konfigurasi OpenRouter (Opsional, jika tidak menggunakan n8n untuk AI) ---
 // Jika Anda ingin langsung memanggil OpenRouter dari Node.js tanpa n8n untuk AI
-const OPENROUTER_API_KEY = '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'; // Ganti dengan kunci API OpenRouter Anda
+const OPENROUTER_API_KEY = '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'; // Ganti dengan kunci API OpenRouter Anda
 const OPENROUTER_MODEL = 'mistralai/mistral-7b-instruct:free'; // Contoh model gratis di OpenRouter
 const N8N_WEBHOOK_URL = 'https://aprizallahmad.app.n8n.cloud/webhook-test/8fee5327-d473-4690-af5b-493484850a6e'; // Ganti dengan URL webhook n8n Anda
 
@@ -26,7 +26,7 @@ const N8N_WEBHOOK_URL = 'https://aprizallahmad.app.n8n.cloud/webhook-test/8fee53
 async function sendWhatsAppMessage(chatId, message) {
     try {
         const response = await axios.post(
-            `${WAHA_API_URL}/api/sendText`,
+            `${WAHA_API_URL}/api/v1/instances/${WAHA_INSTANCE_ID}/sendText`,
             {
                 chatId: chatId,
                 message: message,
