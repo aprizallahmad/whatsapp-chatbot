@@ -19,7 +19,7 @@ const WAHA_WEBHOOK_SECRET = 'INI_RAHASIA_ANDA_YANG_UNIK'; // Ganti dengan secret
 // --- Konfigurasi OpenRouter (Opsional, jika tidak menggunakan n8n untuk AI) ---
 // Jika Anda ingin langsung memanggil OpenRouter dari Node.js tanpa n8n untuk AI
 const OPENROUTER_API_KEY = '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'; // Ganti dengan kunci API OpenRouter Anda
-const OPENROUTER_MODEL = 'mistralai/mistral-7b-instruct:free'; // Contoh model gratis di OpenRouter
+const OPENROUTER_MODEL = 'deepseek/deepseek-chat-v3-0324:free'; // Contoh model gratis di OpenRouter
 const N8N_WEBHOOK_URL = 'https://aprizallahmad.app.n8n.cloud/webhook-test/8fee5327-d473-4690-af5b-493484850a6e'; // Ganti dengan URL webhook n8n Anda
 
 // Fungsi untuk mengirim pesan balasan melalui WAHA
@@ -103,7 +103,7 @@ app.post('/waha-webhook', async (req, res) => {
             // Jika n8n yang akan mengirim balasan, Anda tidak perlu mengirim di sini.
             // Jika Anda ingin Node.js menunggu balasan dari n8n, n8n perlu mengembalikan teks balasan.
             // Untuk kesederhanaan awal, asumsikan n8n akan mengirim balasan sendiri.
-            res.send('Pesan diterima dan diteruskan ke n8n. dan ini balasannya : ' + n8nResponse.data.message);
+            res.send('Pesan diterima dan diteruskan ke n8n. dan ini balasannya : ' + n8nResponse.data[0].choices[0].message.content);s
         } catch (n8nError) {
             await sendWhatsAppMessage(chatId, 'Maaf, ada masalah dalam memproses permintaan Anda.');
             res.status(500).send({
